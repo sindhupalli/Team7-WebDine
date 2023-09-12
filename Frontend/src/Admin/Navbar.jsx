@@ -9,6 +9,7 @@ import Auth from "../customers/pages/Auth/Auth";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../State/Authentication/Action";
 import { useParams } from "react-router-dom";
+import { Icon } from '@iconify/react';
 const Navbar = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -83,14 +84,56 @@ const Navbar = () => {
             >
               Employee Dashbord
             </span>
+            <div className="flex items-center space-x-2">
+          {auth.user?.fullName ? (
             <span
+              id="demo-positioned-button"
+              aria-controls={open ? "demo-positioned-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? "true" : undefined}
+              onClick={
+                auth.user?.role === "ROLE_ADMIN"
+                  ? handleOpenMenu
+                  : navigateToProfile
+              }
+              className=" font-semibold cursor-pointer"
+            >
+              <Icon icon="gg:profile"  className="text-4xl" sx={{ fontSize: "2rem" }} />
+            </span>
+          ) : (
+            <Icon icon="gg:profile"  className="text-4xl" sx={{ fontSize: "2rem" }} />
+          )}
+          <Menu
+            id="basic-menu"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleCloseMenu}
+            MenuListProps={{
+              "aria-labelledby": "basic-button",
+            }}
+          >
+            <MenuItem
+              onClick={() =>
+                auth.user?.role === "ROLE_ADMIN"
+                  ? navigate("/admin")
+                  : navigate("/super-admin")
+              }
+            >
+              Store Dashboard
+            </MenuItem>
+            <MenuItem onClick={handleLogout}>Logout</MenuItem>
+          </Menu>
+        </div>
+
+            {/* <Icon icon="gg:profile"  className="text-4xl" sx={{ fontSize: "2rem" }} /> */}
+            {/* <span
               onClick={()=>{
                 navigate(`/admin/restaurants/${id}`)
               }}
               className=" font-semibold cursor-pointer"
             >
               Store Dashbord
-            </span>
+            </span> */}
          
         </div>
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { TextField, Button, makeStyles, Card } from '@mui/material';
-import { Create } from '@mui/icons-material';
+import { Create, Restaurant } from '@mui/icons-material';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { createCategoryAction } from '../../State/Customers/Restaurant/restaurant.action';
@@ -9,19 +9,22 @@ import { createCategoryAction } from '../../State/Customers/Restaurant/restauran
 
 const CreateCategory = () => {
     const {id}=useParams();
+    
     const dispatch=useDispatch();
  
   const [formData, setFormData] = useState({
     categoryName: '',
     restaurantId: '',
+    restaurantName: '',
   });
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
     const data={
         name:formData.categoryName,
-        restaurant:{
-            id
+        restaurant:{ 
+          id,
+          
         }
     }
     dispatch(createCategoryAction(data))
@@ -49,9 +52,10 @@ const CreateCategory = () => {
         fullWidth
       />
       <TextField
-        label="Restaurant Id"
+        label="Store Id"
         name="restaurantName"
         value={id}
+        //value={restaurantName}
         onChange={handleInputChange}
         fullWidth
       />

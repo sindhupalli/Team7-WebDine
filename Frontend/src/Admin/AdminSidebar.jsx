@@ -19,7 +19,7 @@ import EventIcon from '@mui/icons-material/Event';
 const menu = [
 
    { title: "Store", icon: <StorefrontIcon />, path: "/" },
-  { title: "Employee Dasboard", icon: <ShoppingBagIcon />, path: "/orders" },
+  //{ title: "Employee Dasboard", icon: <ShoppingBagIcon />, path: "/orders" },
   { title: "Menu", icon: <ShopTwoIcon />, path: "/menu" },
   { title: "Add Category", icon: <AddIcon />, path: "/add-category" },
   // { title: "Add Restaurant", icon: <AddCircleIcon />, path: "/add-restaurant" },
