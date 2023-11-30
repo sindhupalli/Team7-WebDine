@@ -14,22 +14,16 @@ import ShopTwoIcon from "@mui/icons-material/ShopTwo";
 import { logout } from "../State/Authentication/Action";
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import IngredientTable from "./Events/Events";
-import EventIcon from '@mui/icons-material/Event';
+
 const menu = [
 
-   { title: "Store", icon: <StorefrontIcon />, path: "/" },
-  //{ title: "Employee Dasboard", icon: <ShoppingBagIcon />, path: "/orders" },
-  { title: "Menu", icon: <ShopTwoIcon />, path: "/menu" },
-  { title: "Add Category", icon: <AddIcon />, path: "/add-category" },
-  // { title: "Add Restaurant", icon: <AddCircleIcon />, path: "/add-restaurant" },
-  { title: "Add Menu", icon: <AddIcon />, path: "/add-menu" },
-  // { title: "Change Restaurant Status", icon: <StorefrontIcon />, path: "/" },
-  { title: "Events", icon: <EventIcon/>, path: "/event" },
-  
+  { title: "Dashboard", icon: <Dashboard />, path: "/" },
+  { title: "Restaurants", icon: <ShoppingBagIcon />, path: "/restaurants" },
+  { title: "Customers", icon: <ShopTwoIcon />, path: "/customers" },
+  { title: "Restaurant Request", icon: <AddCircleIcon />, path: "/restaurant-request" },
   { title: "Logout", icon: <LogoutIcon />, path: "/" },
 ];
-export default function AdminSidebar({ handleClose, open }) {
+export default function SuperAdminSidebar({ handleClose, open }) {
   const isSmallScreen = useMediaQuery("(max-width:1080px)");
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -37,14 +31,12 @@ export default function AdminSidebar({ handleClose, open }) {
   console.log("restaurantId ",id)
 
   const handleNavigate = (item) => {
-    navigate(`/admin/restaurants/${id}${item.path}`);
+    navigate(`/super-admin${item.path}`);
     if (item.title === "Logout") {
       navigate("/");
       dispatch(logout());
     }
-    else if(item.title==="Store"){
-      navigate("/admin")
-    }
+    
     
   };
 
@@ -59,7 +51,7 @@ export default function AdminSidebar({ handleClose, open }) {
           variant={isSmallScreen ? "temporary" : "permanent"}
           // variant="persistent"
         >
-          <div className="w-[50vw] lg:w-[20vw] group h-[100vh] flex flex-col justify-center text-xl space-y-[1.68rem]">
+          <div className="w-[50vw] lg:w-[20vw] group h-[100vh] flex flex-col justify-center text-xl space-y-8">
             <Divider verticle />
             {menu.map((item, i) => (
               <>
